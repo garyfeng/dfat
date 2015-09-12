@@ -1,6 +1,7 @@
 #' An operator `@` to extract a named member of a list that is in a list and returns a vector. 
 #' 
 #' The name 'dfat' comes from 'df' for data frames, and 'at' for the operator `@`, following the XPath convension. 
+#' This overwrites the \code{slotOP} http://www.inside-r.org/r-doc/base/slotOp, which is only for S4 objects.
 #' 
 #' @param x A list of lists, where the sub-lists should have named members. 
 #' @param key Either a string that is the name of the property to extract, or an integer index of the property to extract. 
