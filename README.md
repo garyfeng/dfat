@@ -1,6 +1,8 @@
 # dfat
 An operator `@` to extract a named member of a list that is in a list and returns a vector.
 
+**note**: this library masks the ```@``` or "slotOp" in the base module that is reserved for S4 objects only. 
+
 ## Installation ##
 
 ```
