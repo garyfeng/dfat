@@ -44,13 +44,13 @@
   sapply(x, function(c) {
     result <- tryCatch(
       # test the following code
-{`[[`(c, key);}
-, warning = function(war) {print(war)}
-, error = function(err) {print(err); result<-NA}
-#, finally = {stop("Error `@`: will reach this step no matter what.")}
+      {`[[`(c, key);}
+      , warning = function(war) {print(war)}
+      , error = function(err) {print(err); result<-NA}
+      #, finally = {stop("Error `@`: will reach this step no matter what.")}
     )
-if (is.null(result)) result<-NA
-result
+    if (is.null(result)) result<-NA
+    result
   })
 }
 
