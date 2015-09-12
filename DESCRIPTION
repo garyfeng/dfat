@@ -1,0 +1,9 @@
+Package: dfat
+Type: Package
+Title: What the package does (short line)
+Version: 1.0
+Date: 2015-09-11
+Author: Gary Feng <gary.feng@gmail.com>
+Maintainer: Gary Feng <gary.feng@gmail.com>
+Description: Adding an operator `@` which extracts a property from a list of lists and returns a vector
+License: GPL v3
