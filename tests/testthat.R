@@ -1,13 +1,18 @@
 ### Unit testing ###
 require(testthat)
-require(dfat)
+# until this gets on CRAN
+# require(dfat)
+# we use the github site
+require(devtools)
+devtools::install_github('garyfeng/dfat')
 
+############
 testvec <- list(
   list(from=1, to="here", date="1990-12-12"), 
   list(from=2, to="there", via=list("train", "airplane"), date=123.45)
 )
-
 key <- "from"
+###########
 
 test_that("`@` and `@@` return the desired properties as a vector", {
   expect_equal(testvec%@%"from", c(1,2))
