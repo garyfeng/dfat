@@ -15,27 +15,47 @@
 A vector of the property, in the same class as the property, with unsuccessful conversions filled by NAs.
 }
 \description{
-The name 'dfat' comes from 'df' for data frames, and '@' for the operator , following the XPath convension.
+The name 'dfat' comes from 'df' for data frames, and '%AT%' for the operator , following the XPath convension.
 This overwrites the \code{slotOP} http://www.inside-r.org/r-doc/base/slotOp, which is only for S4 objects.
 }
 \details{
 Imagine you have a data.frame where a variable/column is a list of lists,
   and the lists have named members, e.g.,
+
+  \code{
     df$itinary <- list(
         list(from="NYC", to="LA", price=1200, via="train"),
         list(from="LA", to="SF", price="unknown"),
     ...)
+  }
+
  You want to get the "from" value of itinary as a vector. You can do
-    {df$itinaryAT"from\"} or {`@`(df$itinary, "via")}
- It is slightly more than syntactic sugar for \code{sapply(x, function(m) {m[["from"]]})}.
+
+    \code{
+      df$itinary %AT% "from"
+    } or \code{
+      %AT%(df$itinary, "via")
+   }
+
+ It is slightly more than syntactic sugar for
+
+ \code{
+   sapply(x, function(m) {
+     m[["from"]]
+   })
+ }
+
+
  We extended the idea in several ways:
-   1). We define a in-fix operator `qqq` that does so in a way that is syntactically more natural
+
+   1). We define a in-fix operator %AT% that does so in a way that is syntactically more natural
+
    2). We added error handling, in the case of bad indecies, etc.
 }
 \examples{
 library(daft)
 
-df$itinaryAT"from"
-`@`(df$itinary, "via")
+df$itinary\%AT\%"from"
+\%AT\%(df$itinary, "via")
 }
 
