@@ -5,6 +5,7 @@ require(testthat)
 # we use the github site
 require(devtools)
 devtools::install_github('garyfeng/dfat')
+# or source("R/dfat.R")
 
 ############
 testvec <- list(
@@ -57,3 +58,27 @@ test_that("`@` and `%@@%` throw errors in the following tests", {
   expect_error(`%@%`("that", 1))
   expect_error(`%@@%`(c(1,2,3), 1))
 })
+
+test2<- list(
+  list(key=c(1,2,3), key1=c("a", "b"), key2=c("this", "that")),
+  list(key=c(5,6,7), key1=c("c", "d"), key2=c("one", "two", "three"))
+)
+
+# # This is a desired feature? [update] we return NA to keep things strict
+# test_that("`@` and `%@@%` return a matrix when the value is a vector itself", {
+#   expect_equal(dim(test2@"key"), c(3,2))
+#   expect_equal(class(test2@"key1"), "matrix")
+#   expect_equal(class(test2@"key2"), "list")
+# })
+
+# UNDESIRED side effects when attr contains more than single atomic value (vectors, lists, etc.)
+# In the strict @ case, we simply return NA for them
+# Use the permissive %@@% to get the result in a list
+test_that("these are undesired side-effects that we need to fix", {
+  # when the attribute contains vectors of different lengths across rows, we get a list
+  expect_equal(test2@"key", c(NA, NA))
+  expect_equal(test2@"key1", c(NA, NA))
+  expect_equal(test2@"key2", c(NA, NA))
+})
+
+

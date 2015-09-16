@@ -9,9 +9,9 @@
 #' This overwrites the \code{slotOP} http://www.inside-r.org/r-doc/base/slotOp, which is only for S4 objects.
 #' 
 #' @param x A list of lists, where the sub-lists should have named members. 
-#' @param key Either a string that is the name of the property to extract, or an integer index of the property to extract. 
+#' @param key Either a string that is the name of the attribute to extract, or an integer index of the attribute to extract. 
 #'   
-#' @return A vector if all properties can be converted to the same atomic class; or a list in the case that 
+#' @return A vector if all attributes can be converted to the same atomic class; or a list in the case that 
 #'   the values cannot be fit into a vector.
 #' 
 #' @details Imagine you have a data.frame where a variable/column is a list of lists,
@@ -58,7 +58,7 @@
 #' @export
 #' 
 `%@@%` <- function(x, key) {
-  # %@@% is the permissive operator that returns a vector or, in the case of non-atomic properties, a list
+  # %@@% is the permissive operator that returns a vector or, in the case of non-atomic attributes, a list
   # makesure the input vars are valid
   force(x); force(key); 
   if(missing(key)) stop()
@@ -83,9 +83,12 @@
 #' This overwrites the \code{slotOP} http://www.inside-r.org/r-doc/base/slotOp, which is only for S4 objects.
 #' 
 #' @param x A list of lists, where the sub-lists should have named members. 
-#' @param key Either a string that is the name of the property to extract, or an integer index of the property to extract. 
+#' @param key Either a string that is the name of the attribute to extract, or an integer index of the attribute to extract. 
 #'   
-#' @return A vector of the property, in the same class as the property, with unsuccessful conversions filled by NAs.
+#' @return A vector of the attribute, in the same class as the attribute, 
+#'   with unsuccessful conversions (non-atomic or recursive values such as lists) filled by NAs.
+#'   Note that the attribute may be a vector, which would result in a matrix if x is a vector.
+#'   In this version we will return NA, just to keep the return value a strict vector. 
 #' 
 #' @details Imagine you have a data.frame where a variable/column is a list of lists,
 #'   and the lists have named members, e.g.,
@@ -130,17 +133,29 @@
 #'   
 #' @export
 #' 
-# @ and %@% are strict versions of @@ that only returns a vector of atomic values, replacing everything else with NA
-`@` <- `%@%` <-` %AT%` <- function(x, key) {
+# @ and %@% are strict versions of @@ that only returns a vector 
+#   of atomic values, replacing everything else with NA
+`@` <- `%@%` <-`%AT%` <- function(x, key) {
   result <-x%@@%key
-  if(is.list(result)) {
-    sapply(result, function(x){
-      if(is.atomic(x)) x else NA
+  if (is.matrix(result)) {
+    # return NAs
+    rep(NA, dim(result)[2])
+  } else if (is.list(result)) {
+    # a list, only turns values if the list contains vectors of a single element
+    result<- sapply(result, function(x){
+      if(is.atomic(x)) {
+        if(length(x)==1) x else NA 
+      } else NA
     })
-  } else {
     result
+  } else if (is.atomic(result)) {
+    result
+  } else {
+    stop("%@@% returned an uncognizable result")
   }
 }
 
-
+#########
+# experimental support for "%AT%<-"
+# see discussion at https://github.com/garyfeng/dfat/issues/3
 
