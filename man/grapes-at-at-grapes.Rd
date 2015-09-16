@@ -9,10 +9,10 @@ x \%@@\% key
 \arguments{
 \item{x}{A list of lists, where the sub-lists should have named members.}
 
-\item{key}{Either a string that is the name of the property to extract, or an integer index of the property to extract.}
+\item{key}{Either a string that is the name of the attribute to extract, or an integer index of the attribute to extract.}
 }
 \value{
-A vector if all properties can be converted to the same atomic class; or a list in the case that
+A vector if all attributes can be converted to the same atomic class; or a list in the case that
   the values cannot be fit into a vector.
 }
 \description{

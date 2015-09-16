@@ -9,10 +9,13 @@
 \arguments{
 \item{x}{A list of lists, where the sub-lists should have named members.}
 
-\item{key}{Either a string that is the name of the property to extract, or an integer index of the property to extract.}
+\item{key}{Either a string that is the name of the attribute to extract, or an integer index of the attribute to extract.}
 }
 \value{
-A vector of the property, in the same class as the property, with unsuccessful conversions filled by NAs.
+A vector of the attribute, in the same class as the attribute,
+  with unsuccessful conversions (non-atomic or recursive values such as lists) filled by NAs.
+  Note that the attribute may be a vector, which would result in a matrix if x is a vector.
+  In this version we will return NA, just to keep the return value a strict vector.
 }
 \description{
 The name 'dfat' comes from 'df' for data frames, and '%AT%' for the operator , following the XPath convension.
