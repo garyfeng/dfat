@@ -18,9 +18,4 @@ A function to back fill NAs in a vector with the last non-NA value
 \details{
 see https://gist.github.com/garyfeng/27e7f8e406192a8cb33a
 }
-\note{
-\code{x<-c("A","B",NA,NA,"C",NA,NA,NA,NA,"D",NA,NA);}
-  \code{backFillNA(x)}
-  \code{[1] "A" "B" "B" "B" "C" "C" "C" "C" "C" "D" "D" "D" }
-}
 
