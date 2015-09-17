@@ -4,7 +4,7 @@
 #' @param x A vector with some NAs
 #' @return A vector with NAs back filled
 #' @details see https://gist.github.com/garyfeng/27e7f8e406192a8cb33a
-#' @details   
+#' 
 #'   x<-c("A","B",NA,NA,"C",NA,NA,NA,NA,"D",NA,NA);
 #'   backFillNA(x)
 #'   [1] "A" "B" "B" "B" "C" "C" "C" "C" "C" "D" "D" "D" 
