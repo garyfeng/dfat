@@ -4,7 +4,7 @@
 \alias{\%ATAT\%}
 \title{An operator  to extract a named member of a list that is in a list and returns a vector or a list.}
 \usage{
-x \%@@\% key
+x \%ATAT\% key
 }
 \arguments{
 \item{x}{A list of lists, where the sub-lists should have named members.}

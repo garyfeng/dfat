@@ -4,7 +4,7 @@
 \alias{AT}
 \title{An operator  to extract a named member of a list that is in a list and returns a vector.}
 \usage{
-"@"(x, key)
+"AT"(x, key)
 }
 \arguments{
 \item{x}{A list of lists, where the sub-lists should have named members.}
