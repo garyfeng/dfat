@@ -1,12 +1,16 @@
 
 #' A function to back fill NAs in a vector with the last non-NA value
 #' 
+#' The function will throw errors when the input is not an atomic vector.
+#' 
 #' @param x A vector with some NAs
+#' 
 #' @return A vector with NAs back filled
+#' 
 #' @details see https://gist.github.com/garyfeng/27e7f8e406192a8cb33a
 #' 
 #' @export
-#' 
+
 backFillNA<- function (x) {
   # input checking
   if(!is.atomic(x)) stop("backFillNA only takes a atomic vector as input.")

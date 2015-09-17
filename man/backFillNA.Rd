@@ -13,7 +13,7 @@ backFillNA(x)
 A vector with NAs back filled
 }
 \description{
-A function to back fill NAs in a vector with the last non-NA value
+The function will throw errors when the input is not an atomic vector.
 }
 \details{
 see https://gist.github.com/garyfeng/27e7f8e406192a8cb33a
