@@ -135,7 +135,7 @@
 #' 
 # @ and %@% are strict versions of @@ that only returns a vector 
 #   of atomic values, replacing everything else with NA
-`@` <- `%@%` <-`%AT%` <- function(x, key) {
+`@` <- function(x, key) {
   result <-x%@@%key
   if (is.matrix(result)) {
     # return NAs
@@ -154,6 +154,17 @@
     stop("%@@% returned an uncognizable result")
   }
 }
+
+#' Alias of the AT sign
+#' @export
+#' 
+`%@%` <- `@`
+
+#' Alias of the AT sign
+#' @export
+#' 
+`%AT%` <- `@`
+
 
 #########
 # experimental support for "%AT%<-"
