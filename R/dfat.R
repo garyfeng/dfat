@@ -155,16 +155,6 @@
   }
 }
 
-#' Alias of the AT sign
-#' @export
-#' 
-`%@%` <- `@`
-
-#' Alias of the AT sign
-#' @export
-#' 
-`%AT%` <- `@`
-
 
 #########
 # experimental support for "%AT%<-"
