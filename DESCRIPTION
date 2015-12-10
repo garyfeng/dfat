@@ -1,6 +1,6 @@
 Package: dfat
 Type: Package
-Title: What the package does (short line)
+Title: Data-frame AT: Repurposing the `@` sign for extracting named properties from a list
 Version: 1.0
 Date: 2015-09-11
 Author: Gary Feng <gary.feng@gmail.com>
